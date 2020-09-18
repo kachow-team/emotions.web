@@ -101,7 +101,7 @@ class Home extends React.Component {
                     <Div className={'MapWrap'}>
                         <div className={'Map'}>
                             <GoogleMapReact
-                                //bootstrapURLKeys={{ key: 'AIzaSyAGdYQpZAHTlLxmAkj-CUMBzBbmip3N2lM' }}
+                                bootstrapURLKeys={{ key: 'AIzaSyBfWuWoRpL4rFbuyTrQdN04EuwOxhkZUeY' }}
                                 defaultCenter={{
                                     lat: 62.95,
                                     lng: 30.33
