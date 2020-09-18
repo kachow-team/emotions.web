@@ -1,0 +1,56 @@
+.Panel__in {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.Panel__in .Group:first-of-type {
+    flex-basis: 100%;
+    flex-grow: 1;
+}
+
+.MapWrap {
+    height: 95%;
+    position: relative;
+    margin-top: 0 !important;
+}
+
+.Smile{
+    position: absolute;
+}
+
+.Smile_top {
+    top: 0;
+}
+
+.Smile_bottom {
+    bottom: 15px;
+}
+
+
+.Smile_right {
+    right: 0;
+}
+
+.Smile_top, .Smile_bottom{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Smile_left, .Smile_right{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.Separator{
+    display: none;
+}
+
+.Map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
