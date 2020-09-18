@@ -17,7 +17,11 @@ import it from '../img/it.svg';
 import karantin from '../img/karantin.svg';
 
 import MusicIcon from '../img/MusicIcon.svg'
+
 import SleepIcon from '../img/sleepIcon.svg'
+import SadIcon from '../img/sadIcon.svg'
+import TongueIcon from '../img/tongueIcon.svg'
+import HappyIcon from '../img/happyIcon.svg'
 
 import HorizontalScroll from "@vkontakte/vkui/dist/components/HorizontalScroll/HorizontalScroll";
 import Header from "@vkontakte/vkui/dist/components/Header/Header";
@@ -29,7 +33,7 @@ import './Home.css';
 const PictureOnMap = (props) => {
 console.log(props.picId);
 return (
-    <img key={props.picId} onClick={() => alert()} style={{width: '100px', height: '100px'}}
+    <img key={props.picId} onClick={props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
          className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
 )
 };
@@ -105,42 +109,47 @@ class Home extends React.Component {
                                 defaultZoom={11}
                             >
                                 <PictureOnMap
+                                    go={this.props.go}
                                     lat={59.955413}
                                     lng={30.337844}
                                     picId={persik}
                                 />
                                 <PictureOnMap
+                                    go={this.props.go}
                                     lat={62.955413}
                                     lng={30.337844}
                                     picId={car}
                                 />
                                 <PictureOnMap
+                                    go={this.props.go}
                                     lat={57.955413}
                                     lng={30.337844}
                                     picId={art}
                                 />
                                 <PictureOnMap
+                                    go={this.props.go}
                                     lat={55.955413}
                                     lng={20.337844}
                                     picId={it}
                                 />
                                 <PictureOnMap
+                                    go={this.props.go}
                                     lat={55.955413}
                                     lng={20.337844}
                                     picId={karantin}
                                 />
                             </GoogleMapReact>
-                            <Avatar className={'Smile Smile_top'} size={64}>
-                                <img src={MusicIcon} />
+                            <Avatar className={'Smile Smile_top'} size={35}>
+                                <img src={TongueIcon} />
                             </Avatar>
-                            <Avatar className={'Smile Smile_bottom'} size={64}>
+                            <Avatar className={'Smile Smile_bottom'} size={35}>
                                 <img src={SleepIcon} />
                             </Avatar>
-                            <Avatar className={'Smile Smile_right'} size={64}>
-                                <img src={MusicIcon} />
+                            <Avatar className={'Smile Smile_right'} size={35}>
+                                <img src={HappyIcon} />
                             </Avatar>
-                            <Avatar className={'Smile Smile_left'} size={64}>
-                                <img src={MusicIcon} />
+                            <Avatar className={'Smile Smile_left'} size={35}>
+                                <img src={SadIcon} />
                             </Avatar>
                         </div>
                     </Div>

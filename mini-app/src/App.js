@@ -6,10 +6,6 @@ import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
 import Persik from './panels/Persik';
-import CreatePodcastMain from "./panels/CreatePodcastMain";
-import Editor from "./panels/Editor";
-import CreatePodcastForm from "./panels/CreatePodcastForm";
-import Final from "./panels/Final";
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState('home');
@@ -17,8 +13,6 @@ const App = () => {
 
 	//const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 	const [popout, setPopout] = useState(null);
-
-	const [audio, setAudio] = useState(null);
 
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data }}) => {
@@ -42,11 +36,6 @@ const App = () => {
 
 	return (
 		<View activePanel={activePanel} popout={popout}>
-
-			<CreatePodcastMain id='createpodcastmain' go={go} />
-			<CreatePodcastForm id='createpodcastform' go={go} setAudio={setAudio} />
-			<Editor id='editor' fetchedUser={fetchedUser} go={go} audio={audio} />
-			<Final id='final' fetchedUser={fetchedUser} go={go} audio={audio} />
 			<Home id='home' fetchedUser={fetchedUser} go={go} />
 			<Persik id='persik' go={go} />
 		</View>

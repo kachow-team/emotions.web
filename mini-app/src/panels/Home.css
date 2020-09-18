@@ -21,16 +21,20 @@
 }
 
 .Smile_top {
-    top: 0;
+    top: 12px;
 }
 
 .Smile_bottom {
-    bottom: 15px;
+    bottom: 12px;
 }
 
 
 .Smile_right {
-    right: 0;
+    right: 12px;
+}
+
+.Smile_left {
+    left: 12px;
 }
 
 .Smile_top, .Smile_bottom{
@@ -41,6 +45,10 @@
 .Smile_left, .Smile_right{
     top: 50%;
     transform: translateY(-50%);
+}
+
+.Smile .Avatar__img {
+    background-color: #FFFFFF;
 }
 
 .Separator{
