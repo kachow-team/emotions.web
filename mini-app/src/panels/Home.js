@@ -17,6 +17,7 @@ import it from '../img/it.svg';
 import karantin from '../img/karantin.svg';
 
 import MusicIcon from '../img/MusicIcon.svg'
+import SleepIcon from '../img/sleepIcon.svg'
 
 import HorizontalScroll from "@vkontakte/vkui/dist/components/HorizontalScroll/HorizontalScroll";
 import Header from "@vkontakte/vkui/dist/components/Header/Header";
@@ -24,19 +25,12 @@ import Search from "@vkontakte/vkui/dist/components/Search/Search";
 
 import './Home.css';
 
-let mapNameToPath = new Map();
-mapNameToPath.set('persik', persik);
-mapNameToPath.set('car', car);
-mapNameToPath.set('art', art);
-mapNameToPath.set('it', it);
-mapNameToPath.set('karantin', karantin);
-
 
 const PictureOnMap = (props) => {
 console.log(props.picId);
 return (
     <img key={props.picId} onClick={() => alert()} style={{width: '100px', height: '100px'}}
-         className={props.picId} src={mapNameToPath.get(props.picId)} alt={`emotion-${props.picId}`}/>
+         className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
 )
 };
 
@@ -113,34 +107,34 @@ class Home extends React.Component {
                                 <PictureOnMap
                                     lat={59.955413}
                                     lng={30.337844}
-                                    picId="persik"
+                                    picId={persik}
                                 />
                                 <PictureOnMap
                                     lat={62.955413}
                                     lng={30.337844}
-                                    picId="car"
+                                    picId={car}
                                 />
                                 <PictureOnMap
                                     lat={57.955413}
                                     lng={30.337844}
-                                    picId="art"
+                                    picId={art}
                                 />
                                 <PictureOnMap
                                     lat={55.955413}
                                     lng={20.337844}
-                                    picId="it"
+                                    picId={it}
                                 />
                                 <PictureOnMap
                                     lat={55.955413}
                                     lng={20.337844}
-                                    picId="karantin"
+                                    picId={karantin}
                                 />
                             </GoogleMapReact>
                             <Avatar className={'Smile Smile_top'} size={64}>
                                 <img src={MusicIcon} />
                             </Avatar>
                             <Avatar className={'Smile Smile_bottom'} size={64}>
-                                <img src={MusicIcon} />
+                                <img src={SleepIcon} />
                             </Avatar>
                             <Avatar className={'Smile Smile_right'} size={64}>
                                 <img src={MusicIcon} />
