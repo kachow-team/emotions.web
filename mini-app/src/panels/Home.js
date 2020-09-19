@@ -15,8 +15,25 @@ import car from '../img/car.svg';
 import art from '../img/art.svg';
 import it from '../img/it.svg';
 import karantin from '../img/karantin.svg';
+import music from '../img/music.svg';
+import cinema from '../img/cinema.svg';
+import autumn from '../img/autumn.svg';
+import job from '../img/job.svg';
+import games from '../img/game.svg';
+import humour from '../img/humour.svg';
+import photo from '../img/photo.svg';
 
-import MusicIcon from '../img/MusicIcon.svg'
+import AutumnIcon from '../img/bottom/Autumn.svg'
+import JobIcon from '../img/bottom/Job.png'
+import ArtIcon from '../img/bottom/Art.svg'
+import PhotoIcon from '../img/bottom/Photo.svg'
+import MoviesIcon from '../img/bottom/Happy.svg'
+import CarIcon from '../img/bottom/Car.svg'
+import MusicIcon from '../img/bottom/MusicIcon.svg'
+import ImprisonedIcon from '../img/bottom/Imprisoned.svg'
+import HumorIcon from '../img/bottom/Humor.svg'
+import GamesIcon from '../img/bottom/Games.svg'
+import ItIcon from '../img/bottom/ITicon.svg'
 
 import SleepIcon from '../img/sleepIcon.svg'
 import SadIcon from '../img/sadIcon.svg'
@@ -50,44 +67,68 @@ const itemStyle = {
     fontSize: 12
 };
 
-const thematics = [
-    {id: 3201, name: "Аренда автомобилей"},
-    {id: 3273, name: "Автотовары"},
-    {id: 3205, name: "Автосалон"},
-    {id: 3282, name: "Автосервис"},
-    {id: 3283, name: "Услуги для автовладельцев"},
-    {id: 3284, name: "Велосипеды"},
-    {id: 3285, name: "Мотоциклы и другая мототехника"},
-    {id: 3286, name: "Водный транспорт"},
-    {id: 3287, name: "Автопроизводитель"},
-    {id: 3288, name: "Автомойка"},
-    {id: 3117, name: "Автошкола"},
-    {id: 3118, name: "Детский сад"},
-    {id: 3119, name: "Гимназия"},
-    {id: 3120, name: "Колледж"},
-    {id: 3121, name: "Лицей"},
-    {id: 3122, name: "Техникум"},
-    {id: 3123, name: "Университет"},
-    {id: 3124, name: "Школа"},
-    {id: 3125, name: "Институт"},
-    {id: 3126, name: "Обучающие курсы"},
-    {id: 3276, name: "Дополнительное образование"},
-    {id: 3275, name: "Тренинг, семинар"},
-    {id: 3127, name: "Танцевальная школа"}
-];
-
 const moods = [
-    {name: 'Музыка', icon: MusicIcon},
-    {name: 'Фильмы', icon: MusicIcon},
-    {name: 'Осень', icon: MusicIcon},
-    {name: 'Работа', icon: MusicIcon},
-    {name: 'Карантин', icon: MusicIcon},
-    {name: 'IT', icon: MusicIcon},
-    {name: 'Авто', icon: MusicIcon},
-    {name: 'Игры', icon: MusicIcon},
-    {name: 'Искусство', icon: MusicIcon},
-    {name: 'Юмор', icon: MusicIcon},
-    {name: 'Фотографии', icon: MusicIcon},
+    {
+        name: 'Музыка',
+        icon: MusicIcon,
+        mapIcon: music,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {
+        name: 'Фильмы',
+        icon: MoviesIcon,
+        mapIcon: cinema,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {
+        name: 'Осень',
+        icon: AutumnIcon,
+        mapIcon: autumn,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {
+        name: 'Работа',
+        icon: JobIcon,
+        mapIcon: job,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {
+        name: 'Карантин',
+        icon: ImprisonedIcon,
+        mapIcon: karantin,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {name: 'IT', icon: ItIcon, mapIcon: it, coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}},
+    {
+        name: 'Авто',
+        icon: CarIcon,
+        mapIcon: car,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {
+        name: 'Игры',
+        icon: GamesIcon,
+        mapIcon: games,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {
+        name: 'Искусство',
+        icon: ArtIcon,
+        mapIcon: art,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {
+        name: 'Юмор',
+        icon: HumorIcon,
+        mapIcon: humour,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
+    {
+        name: 'Фотографии',
+        icon: PhotoIcon,
+        mapIcon: photo,
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+    },
 
 ];
 
@@ -97,18 +138,15 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            search: ''
-        }
+            search: '',
+            selectedCategoryBottom: '',
+            selectedCategoryMood: '',
+        };
         this.onChange = this.onChange.bind(this);
     }
 
     onChange(e) {
         this.setState({search: e.target.value});
-    }
-
-    get thematics() {
-        const search = this.state.search.toLowerCase();
-        return thematics.filter(({name}) => name.toLowerCase().indexOf(search) > -1);
     }
 
     get moods() {
@@ -125,54 +163,21 @@ class Home extends React.Component {
                             <GoogleMapReact
                                 bootstrapURLKeys={{key: 'AIzaSyBfWuWoRpL4rFbuyTrQdN04EuwOxhkZUeY'}}
                                 defaultCenter={{
-                                    lat: 62.95,
-                                    lng: 30.33
+                                    lat: 59.86,
+                                    lng: 30.18
                                 }}
-                                defaultZoom={11}
+                                defaultZoom={9}
                             >
-                                <PictureOnMap
-                                    go={this.props.go}
-                                    lat={59.955413}
-                                    lng={30.337844}
-                                    picId={persik}
-                                />
-                                <PictureOnMap
-                                    go={this.props.go}
-                                    lat={62.955413}
-                                    lng={30.337844}
-                                    picId={car}
-                                />
-                                <PictureOnMap
-                                    go={this.props.go}
-                                    lat={57.955413}
-                                    lng={30.337844}
-                                    picId={art}
-                                />
-                                <PictureOnMap
-                                    go={this.props.go}
-                                    lat={55.955413}
-                                    lng={20.337844}
-                                    picId={it}
-                                />
-                                <PictureOnMap
-                                    go={this.props.go}
-                                    lat={55.955413}
-                                    lng={20.337844}
-                                    picId={karantin}
-                                />
-                                {/*{moods.map(thematic => (*/}
-                                {/*    <div go={this.props.go}*/}
-                                {/*         lat={55.955413}*/}
-                                {/*         lng={20.337844}*/}
-                                {/*         picId={karantin}*/}
-
-                                {/*         style={{...itemStyle, paddingLeft: 4}}>*/}
-                                {/*        <Avatar size={64} style={{marginBottom: 8}}>*/}
-                                {/*            <img src={thematic.icon}/>*/}
-                                {/*        </Avatar>*/}
-                                {/*        {thematic.name}*/}
-                                {/*    </div>*/}
-                                {/*))}*/}
+                                {this.moods.length > 0 &&
+                                this.moods.map(thematic =>
+                                    <div
+                                        go={this.props.go}
+                                        lat={thematic.coord.lat}
+                                        lng={thematic.coord.lon}>
+                                        <img key={`${thematic.coord.lat}-${thematic.coord.lon}-${thematic.name}`} onClick={this.props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
+                                             src={thematic.mapIcon} alt={`emotion-${thematic.name}`}/>
+                                    </div>
+                                )}
                             </GoogleMapReact>
                             <Avatar
                                 className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone' : 'Smile_iphone'}`}
