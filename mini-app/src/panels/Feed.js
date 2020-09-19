@@ -11,6 +11,7 @@ import persik from '../img/persik.png';
 import './Feed.css';
 
 import FeedPanel from '../img/FeedPanel.svg';
+import postHeader from '../img/postHeader.svg';
 
 const osName = platform();
 
@@ -235,6 +236,7 @@ const posts = [
 
 const Post = ({post}) => (
     <div>
+        <img src={postHeader} />
         <div>{post}</div>
     </div>
 );
