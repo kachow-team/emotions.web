@@ -154,6 +154,14 @@ class Home extends React.Component {
         return moods.filter(({name}) => name.toLowerCase().indexOf(search) > -1);
     }
 
+    handleChoose = (item) => {
+        if (this.state.selectedCategoryBottom === item) {
+            this.setState({selectedCategoryBottom:''})
+        } else {
+            this.setState({selectedCategoryBottom: item})
+        }
+    };
+
     render() {
         return (
             <Panel id={this.props.id}>
@@ -169,12 +177,15 @@ class Home extends React.Component {
                                 defaultZoom={9}
                             >
                                 {this.moods.length > 0 &&
-                                this.moods.map(thematic =>
+                                this.moods.filter(item => (this.state.selectedCategoryBottom === '') || (this.state.selectedCategoryBottom === item.name))
+                                    .map(thematic =>
                                     <div
                                         go={this.props.go}
                                         lat={thematic.coord.lat}
                                         lng={thematic.coord.lon}>
-                                        <img key={`${thematic.coord.lat}-${thematic.coord.lon}-${thematic.name}`} onClick={this.props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
+                                        <img key={`${thematic.coord.lat}-${thematic.coord.lon}-${thematic.name}`}
+                                             onClick={this.props.go} data-to={'persik'}
+                                             style={{width: '100px', height: '100px'}}
                                              src={thematic.mapIcon} alt={`emotion-${thematic.name}`}/>
                                     </div>
                                 )}
@@ -204,7 +215,8 @@ class Home extends React.Component {
                         <div style={{display: 'flex'}}>
                             {this.moods.length > 0 &&
                             this.moods.map(thematic =>
-                                <div style={{...itemStyle, paddingLeft: 4}}>
+                                <div style={{...itemStyle, paddingLeft: 4, opacity: this.state.selectedCategoryBottom === thematic.name ? 0.4: ''}}
+                                     onClick={() => this.handleChoose(thematic.name)}>
                                     <Avatar size={64} style={{marginBottom: 8}}>
                                         <img src={thematic.icon}/>
                                     </Avatar>
