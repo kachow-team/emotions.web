@@ -12,6 +12,7 @@ import './Feed.css';
 
 import FeedPanel from '../img/FeedPanel.svg';
 import postHeader from '../img/postHeader.svg';
+import commentpanel from '../img/commentpanel.svg'
 
 const osName = platform();
 
@@ -237,7 +238,8 @@ const posts = [
 const Post = ({post}) => (
     <div>
         <img src={postHeader} />
-        <div>{post}</div>
+        <div style={{marginTop: 10}}>{post}</div>
+        <img src={commentpanel} />
     </div>
 );
 
