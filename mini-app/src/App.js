@@ -6,10 +6,12 @@ import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
 import Persik from './panels/Persik';
+import Feed from './panels/Feed';
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState('home');
 	const [fetchedUser, setUser] = useState(null);
+	const [thematic, setThematic] = useState('');
 
 	//const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 	const [popout, setPopout] = useState(null);
@@ -39,8 +41,9 @@ const App = () => {
 
 	return (
 		<View activePanel={activePanel} popout={popout}>
-			<Home id='home' fetchedUser={fetchedUser} go={go} iosMove={iosMove} />
+			<Home id='home' fetchedUser={fetchedUser} go={go} iosMove={iosMove} setThematic={setThematic} />
 			<Persik id='persik' go={go} />
+			<Feed id='feed' go={go} thematic={thematic}/>
 		</View>
 	);
 };

@@ -50,9 +50,20 @@ import {
     isMobileSafari
 } from "react-device-detect";
 
+// const PictureOnMap = (props) => {
+//     return (
+//         <img key={props.picId} onClick={props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
+//              className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
+//     )
+// };
+
 const PictureOnMap = (props) => {
+    const onClick = e => {
+        props.setThematic(props.thematic);
+        props.go(e);
+    }
     return (
-        <img key={props.picId} onClick={props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
+        <img key={props.picId} onClick={onClick} data-to={'feed'} style={{width: '100px', height: '100px'}}
              className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
     )
 };
@@ -184,7 +195,7 @@ class Home extends React.Component {
                                         lat={thematic.coord.lat}
                                         lng={thematic.coord.lon}>
                                         <img key={`${thematic.coord.lat}-${thematic.coord.lon}-${thematic.name}`}
-                                             onClick={this.props.go} data-to={'persik'}
+                                             onClick={(e) => {this.props.setThematic(thematic.name); this.props.go(e);}} data-to={'feed'}
                                              style={{width: '100px', height: '100px'}}
                                              src={thematic.mapIcon} alt={`emotion-${thematic.name}`}/>
                                     </div>
@@ -218,7 +229,7 @@ class Home extends React.Component {
                                 <div style={{...itemStyle, paddingLeft: 4, opacity: this.state.selectedCategoryBottom === thematic.name ? 0.4: ''}}
                                      onClick={() => this.handleChoose(thematic.name)}>
                                     <Avatar size={64} style={{marginBottom: 8}}>
-                                        <img src={thematic.icon}/>
+                                        <img src={thematic.icon} onClick={(e) => {this.props.setThematic(thematic.name); this.props.go(e);}} data-to={'feed'} />
                                     </Avatar>
                                     {thematic.name}
                                 </div>
