@@ -237,9 +237,9 @@ const posts = [
 
 const Post = ({post}) => (
     <div style={{marginTop: 10, borderTop: "5px solid #ECEDF1"}}>
-        <img src={postHeader} />
-        <div style={{marginTop: 10, marginLeft: 12}}>{post}</div>
-        <img src={commentpanel} />
+        <img width="100%" src={postHeader} />
+        <div width="100%" style={{marginTop: 10, marginLeft: 12}}>{post}</div>
+        <img width="100%" src={commentpanel} />
     </div>
 );
 
