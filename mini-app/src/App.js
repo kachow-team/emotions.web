@@ -26,6 +26,7 @@ const App = () => {
 				document.body.attributes.setNamedItem(schemeAttribute);
 				setIosMove(data.insets.top);
 			}
+			setIosMove(bridge.isWebView());
 		});
 		async function fetchData() {
 			const user = await bridge.send('VKWebAppGetUserInfo');

@@ -49,6 +49,7 @@ import './Home.css';
 import {
     isMobileSafari
 } from "react-device-detect";
+import Select from "@vkontakte/vkui/dist/components/Select/Select";
 
 // const PictureOnMap = (props) => {
 //     return (
@@ -173,6 +174,11 @@ class Home extends React.Component {
         }
     };
 
+    handleSmile= (item) => {
+        console.log(item);
+            this.setState({selectedCategoryMood: item})
+    };
+
     render() {
         return (
             <Panel id={this.props.id}>
@@ -190,7 +196,7 @@ class Home extends React.Component {
                                 {this.moods.length > 0 &&
                                 this.moods.filter(item => (this.state.selectedCategoryBottom === '') || (this.state.selectedCategoryBottom === item.name))
                                     .map(thematic =>
-                                    <div
+                                    <div className={'bubblemap'}
                                         go={this.props.go}
                                         lat={thematic.coord.lat}
                                         lng={thematic.coord.lon}>
@@ -201,20 +207,42 @@ class Home extends React.Component {
                                     </div>
                                 )}
                             </GoogleMapReact>
+
+                            {this.state.selectedCategoryMood !== '' ? (
+                            <Select className={'Smile Smile_bottom'} placeholder="Выберите..." value={this.state.selectedCategoryMood} onChange={(e)=>this.handleSmile(e.target.value)}>
+                                <option value="good">Хорошее настроение</option>
+                                <option value="sleep">Сонное настроение</option>
+                                <option value="sad">Грустное настроение</option>
+                                <option value="game">Весёлое настроение</option>
+                            </Select>
+                                )
+                                :
+                                (
+                            [
+                                <div  onClick={() => this.handleSmile('game')}>
                             <Avatar
-                                className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone' : 'Smile_iphone'}`}
+                                className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone' : ''}`}
                                 size={35}>
                                 <img src={TongueIcon}/>
                             </Avatar>
+                                </div>,
+                                <div  onClick={() => this.handleSmile('sleep')}>
                             <Avatar className={'Smile Smile_bottom'} size={35}>
                                 <img src={SleepIcon}/>
                             </Avatar>
+                                </div>,
+                                <div  onClick={() => this.handleSmile('good')}>
                             <Avatar className={'Smile Smile_right'} size={35}>
                                 <img src={HappyIcon}/>
                             </Avatar>
+                                </div>,
+                                <div  onClick={() => this.handleSmile('sad')}>
                             <Avatar className={'Smile Smile_left'} size={35}>
                                 <img src={SadIcon}/>
                             </Avatar>
+                                </div>
+                                ]
+                                )}
                         </div>
                     </Div>
                 </Group>
