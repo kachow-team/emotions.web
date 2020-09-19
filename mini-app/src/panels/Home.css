@@ -78,3 +78,17 @@
         opacity:1;
     }
 }
+
+.Select__el {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    /* identical to box height, or 129% */
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.154px;
+
+    color: #000000;
+
+}

@@ -84,62 +84,72 @@ const moods = [
         name: 'Музыка',
         icon: MusicIcon,
         mapIcon: music,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood: 'good'
     },
     {
         name: 'Фильмы',
         icon: MoviesIcon,
         mapIcon: cinema,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood: 'sleep'
     },
     {
         name: 'Осень',
         icon: AutumnIcon,
         mapIcon: autumn,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood: 'sad'
     },
     {
         name: 'Работа',
         icon: JobIcon,
         mapIcon: job,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood: 'sad'
     },
     {
         name: 'Карантин',
         icon: ImprisonedIcon,
         mapIcon: karantin,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood:'sad'
     },
     {name: 'IT', icon: ItIcon, mapIcon: it, coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}},
     {
         name: 'Авто',
         icon: CarIcon,
         mapIcon: car,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood:'good'
     },
     {
         name: 'Игры',
         icon: GamesIcon,
         mapIcon: games,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood:'game'
     },
     {
         name: 'Искусство',
         icon: ArtIcon,
         mapIcon: art,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood:'good'
     },
     {
         name: 'Юмор',
         icon: HumorIcon,
         mapIcon: humour,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood:'good'
     },
     {
         name: 'Фотографии',
         icon: PhotoIcon,
         mapIcon: photo,
-        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20}
+        coord: {lat: 59.45 + Math.random() % 20, lon: 29.33 + Math.random() % 20},
+        mood:'good'
     },
 
 ];
@@ -168,15 +178,15 @@ class Home extends React.Component {
 
     handleChoose = (item) => {
         if (this.state.selectedCategoryBottom === item) {
-            this.setState({selectedCategoryBottom:''})
+            this.setState({selectedCategoryBottom: ''})
         } else {
             this.setState({selectedCategoryBottom: item})
         }
     };
 
-    handleSmile= (item) => {
+    handleSmile = (item) => {
         console.log(item);
-            this.setState({selectedCategoryMood: item})
+        this.setState({selectedCategoryMood: item})
     };
 
     render() {
@@ -195,53 +205,59 @@ class Home extends React.Component {
                             >
                                 {this.moods.length > 0 &&
                                 this.moods.filter(item => (this.state.selectedCategoryBottom === '') || (this.state.selectedCategoryBottom === item.name))
+                                    .filter(item => (this.state.selectedCategoryMood === '') || (this.state.selectedCategoryMood === item.mood))
                                     .map(thematic =>
-                                    <div className={'bubblemap'}
-                                        go={this.props.go}
-                                        lat={thematic.coord.lat}
-                                        lng={thematic.coord.lon}>
-                                        <img key={`${thematic.coord.lat}-${thematic.coord.lon}-${thematic.name}`}
-                                             onClick={(e) => {this.props.setThematic(thematic.name); this.props.go(e);}} data-to={'feed'}
-                                             style={{width: '100px', height: '100px'}}
-                                             src={thematic.mapIcon} alt={`emotion-${thematic.name}`}/>
-                                    </div>
-                                )}
+                                        <div className={'bubblemap'}
+                                             go={this.props.go}
+                                             lat={thematic.coord.lat}
+                                             lng={thematic.coord.lon}>
+                                            <img key={`${thematic.coord.lat}-${thematic.coord.lon}-${thematic.name}`}
+                                                 onClick={(e) => {
+                                                     this.props.setThematic(thematic.name);
+                                                     this.props.go(e);
+                                                 }} data-to={'feed'}
+                                                 style={{width: '100px', height: '100px'}}
+                                                 src={thematic.mapIcon} alt={`emotion-${thematic.name}`}/>
+                                        </div>
+                                    )}
                             </GoogleMapReact>
 
                             {this.state.selectedCategoryMood !== '' ? (
-                            <Select className={'Smile Smile_bottom'} placeholder="Выберите..." value={this.state.selectedCategoryMood} onChange={(e)=>this.handleSmile(e.target.value)}>
-                                <option value="good">Хорошее настроение</option>
-                                <option value="sleep">Сонное настроение</option>
-                                <option value="sad">Грустное настроение</option>
-                                <option value="game">Весёлое настроение</option>
-                            </Select>
+                                    <Select className={'Smile Smile_bottom'} placeholder="Выберите..."
+                                            value={this.state.selectedCategoryMood}
+                                            onChange={(e) => this.handleSmile(e.target.value)}>
+                                        <option value="good">😃&nbsp;&nbsp;&nbsp;&nbsp;Хорошее настроение</option>
+                                        <option value="sleep">😴&nbsp;&nbsp;&nbsp;&nbsp;Сонное настроение</option>
+                                        <option value="sad">🙁&nbsp;&nbsp;&nbsp;&nbsp;Грустное настроение</option>
+                                        <option value="game">😜&nbsp;&nbsp;&nbsp;&nbsp;Весёлое настроение</option>
+                                    </Select>
                                 )
                                 :
                                 (
-                            [
-                                <div  onClick={() => this.handleSmile('game')}>
-                            <Avatar
-                                className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone' : ''}`}
-                                size={35}>
-                                <img src={TongueIcon}/>
-                            </Avatar>
-                                </div>,
-                                <div  onClick={() => this.handleSmile('sleep')}>
-                            <Avatar className={'Smile Smile_bottom'} size={35}>
-                                <img src={SleepIcon}/>
-                            </Avatar>
-                                </div>,
-                                <div  onClick={() => this.handleSmile('good')}>
-                            <Avatar className={'Smile Smile_right'} size={35}>
-                                <img src={HappyIcon}/>
-                            </Avatar>
-                                </div>,
-                                <div  onClick={() => this.handleSmile('sad')}>
-                            <Avatar className={'Smile Smile_left'} size={35}>
-                                <img src={SadIcon}/>
-                            </Avatar>
-                                </div>
-                                ]
+                                    [
+                                        <div onClick={() => this.handleSmile('game')}>
+                                            <Avatar
+                                                className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone' : ''}`}
+                                                size={35}>
+                                                <img src={TongueIcon}/>
+                                            </Avatar>
+                                        </div>,
+                                        <div onClick={() => this.handleSmile('sleep')}>
+                                            <Avatar className={'Smile Smile_bottom'} size={35}>
+                                                <img src={SleepIcon}/>
+                                            </Avatar>
+                                        </div>,
+                                        <div onClick={() => this.handleSmile('good')}>
+                                            <Avatar className={'Smile Smile_right'} size={35}>
+                                                <img src={HappyIcon}/>
+                                            </Avatar>
+                                        </div>,
+                                        <div onClick={() => this.handleSmile('sad')}>
+                                            <Avatar className={'Smile Smile_left'} size={35}>
+                                                <img src={SadIcon}/>
+                                            </Avatar>
+                                        </div>
+                                    ]
                                 )}
                         </div>
                     </Div>
@@ -254,10 +270,16 @@ class Home extends React.Component {
                         <div style={{display: 'flex'}}>
                             {this.moods.length > 0 &&
                             this.moods.map(thematic =>
-                                <div style={{...itemStyle, paddingLeft: 4, opacity: this.state.selectedCategoryBottom === thematic.name ? 0.4: ''}}
+                                <div style={{
+                                    ...itemStyle,
+                                    paddingLeft: 4,
+                                    opacity: this.state.selectedCategoryBottom === thematic.name ? 0.4 : ''
+                                }}
                                      onClick={() => this.handleChoose(thematic.name)}>
                                     <Avatar size={64} style={{marginBottom: 8}}>
-                                        <img src={thematic.icon} onClick={(e) => {this.props.setThematic(thematic.name); this.props.go(e);}} data-to={'feed'} />
+                                        <img src={thematic.icon} onClick={(e) => {
+                                            this.props.setThematic(thematic.name); /*this.props.go(e);*/
+                                        }} data-to={'feed'}/>
                                     </Avatar>
                                     {thematic.name}
                                 </div>
