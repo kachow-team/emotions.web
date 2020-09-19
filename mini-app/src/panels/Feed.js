@@ -238,7 +238,7 @@ const posts = [
 const Post = ({post}) => (
     <div>
         <img src={postHeader} />
-        <div style={{marginTop: 10}}>{post}</div>
+        <div style={{marginTop: 10, marginLeft: '4%'}}>{post}</div>
         <img src={commentpanel} />
     </div>
 );
@@ -256,11 +256,6 @@ const Feed = props => {
             {posts.filter(({thematic}) => thematic.toLowerCase() == props.thematic.toLowerCase()).map(post => (
                 <Post post={post.post} />
             ))}
-            <FixedLayout vertical='bottom'>
-                <div>
-                    <img src={FeedPanel}/>
-                </div>
-            </FixedLayout>
 	    </Panel>
     );
 }
