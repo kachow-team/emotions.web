@@ -23,6 +23,9 @@
 .Smile_top {
     top: 12px;
 }
+.Smile_top.Smile_iphone {
+    top: 50px !important;
+}
 
 .Smile_bottom {
     bottom: 12px;

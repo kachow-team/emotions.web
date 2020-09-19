@@ -29,9 +29,11 @@ import Search from "@vkontakte/vkui/dist/components/Search/Search";
 
 import './Home.css';
 
+import {
+    isMobileSafari
+} from "react-device-detect";
 
 const PictureOnMap = (props) => {
-console.log(props.picId);
 return (
     <img key={props.picId} onClick={props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
          className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
@@ -139,7 +141,7 @@ class Home extends React.Component {
                                     picId={karantin}
                                 />
                             </GoogleMapReact>
-                            <Avatar className={'Smile Smile_top'} size={35}>
+                            <Avatar className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone':'Smile_iphone'}`} size={35}>
                                 <img src={TongueIcon} />
                             </Avatar>
                             <Avatar className={'Smile Smile_bottom'} size={35}>
@@ -154,7 +156,7 @@ class Home extends React.Component {
                         </div>
                     </Div>
                 </Group>
-                <Search value={this.state.search} onChange={this.onChange} after={null}/>
+                <Search placeHolder={'Поиск по теме и настроению'} value={this.state.search} onChange={this.onChange} after={null}/>
 
                 <Group style={{paddingBottom: 8}} header={<Header mode="secondary">Недавние</Header>}>
                     <HorizontalScroll>
@@ -165,7 +167,7 @@ class Home extends React.Component {
                                 <Avatar size={64} style={{marginBottom: 8}}>
                                     <img src={MusicIcon} />
                                 </Avatar>
-                                Элджей
+                                Элджей {this.props.iosMove}
                                 </div>
                                 )}
                         </div>

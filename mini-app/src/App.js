@@ -14,12 +14,15 @@ const App = () => {
 	//const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 	const [popout, setPopout] = useState(null);
 
+	const [iosMove, setIosMove] = useState();
+
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data }}) => {
 			if (type === 'VKWebAppUpdateConfig') {
 				const schemeAttribute = document.createAttribute('scheme');
 				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
 				document.body.attributes.setNamedItem(schemeAttribute);
+				setIosMove(data.insets.top);
 			}
 		});
 		async function fetchData() {
@@ -36,7 +39,7 @@ const App = () => {
 
 	return (
 		<View activePanel={activePanel} popout={popout}>
-			<Home id='home' fetchedUser={fetchedUser} go={go} />
+			<Home id='home' fetchedUser={fetchedUser} go={go} iosMove={iosMove} />
 			<Persik id='persik' go={go} />
 		</View>
 	);

@@ -28,11 +28,12 @@
     "eruda": "^2.3.3",
     "eruda-code": "^2.0.0",
     "eruda-dom": "^2.0.0",
+    "google-map-react": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-device-detect": "^1.13.1",
     "react-dom": "^16.13.1",
-    "wavesurfer.js": "^4.0.1",
-    "google-map-react": "latest"
+    "wavesurfer.js": "^4.0.1"
   },
   "browserslist": {
     "production": [
