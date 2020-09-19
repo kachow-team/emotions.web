@@ -85,7 +85,7 @@ const moods = [
     {name: 'IT', icon: MusicIcon},
     {name: 'Авто', icon: MusicIcon},
     {name: 'Игры', icon: MusicIcon},
-    {name: 'Икусство', icon: MusicIcon},
+    {name: 'Искусство', icon: MusicIcon},
     {name: 'Юмор', icon: MusicIcon},
     {name: 'Фотографии', icon: MusicIcon},
 
