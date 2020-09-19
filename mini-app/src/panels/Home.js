@@ -34,10 +34,10 @@ import {
 } from "react-device-detect";
 
 const PictureOnMap = (props) => {
-return (
-    <img key={props.picId} onClick={props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
-         className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
-)
+    return (
+        <img key={props.picId} onClick={props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
+             className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
+    )
 };
 
 const itemStyle = {
@@ -76,6 +76,21 @@ const thematics = [
     {id: 3127, name: "Танцевальная школа"}
 ];
 
+const moods = [
+    {name: 'Музыка', icon: MusicIcon},
+    {name: 'Фильмы', icon: MusicIcon},
+    {name: 'Осень', icon: MusicIcon},
+    {name: 'Работа', icon: MusicIcon},
+    {name: 'Карантин', icon: MusicIcon},
+    {name: 'IT', icon: MusicIcon},
+    {name: 'Авто', icon: MusicIcon},
+    {name: 'Игры', icon: MusicIcon},
+    {name: 'Икусство', icon: MusicIcon},
+    {name: 'Юмор', icon: MusicIcon},
+    {name: 'Фотографии', icon: MusicIcon},
+
+];
+
 
 class Home extends React.Component {
 
@@ -103,7 +118,7 @@ class Home extends React.Component {
                     <Div className={'MapWrap'}>
                         <div className={'Map'}>
                             <GoogleMapReact
-                                bootstrapURLKeys={{ key: 'AIzaSyBfWuWoRpL4rFbuyTrQdN04EuwOxhkZUeY' }}
+                                bootstrapURLKeys={{key: 'AIzaSyBfWuWoRpL4rFbuyTrQdN04EuwOxhkZUeY'}}
                                 defaultCenter={{
                                     lat: 62.95,
                                     lng: 30.33
@@ -141,35 +156,38 @@ class Home extends React.Component {
                                     picId={karantin}
                                 />
                             </GoogleMapReact>
-                            <Avatar className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone':'Smile_iphone'}`} size={35}>
-                                <img src={TongueIcon} />
+                            <Avatar
+                                className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone' : 'Smile_iphone'}`}
+                                size={35}>
+                                <img src={TongueIcon}/>
                             </Avatar>
                             <Avatar className={'Smile Smile_bottom'} size={35}>
-                                <img src={SleepIcon} />
+                                <img src={SleepIcon}/>
                             </Avatar>
                             <Avatar className={'Smile Smile_right'} size={35}>
-                                <img src={HappyIcon} />
+                                <img src={HappyIcon}/>
                             </Avatar>
                             <Avatar className={'Smile Smile_left'} size={35}>
-                                <img src={SadIcon} />
+                                <img src={SadIcon}/>
                             </Avatar>
                         </div>
                     </Div>
                 </Group>
-                <Search placeHolder={'Поиск по теме и настроению'} value={this.state.search} onChange={this.onChange} after={null}/>
+                <Search placeHolder={'Поиск по теме и настроению'} value={this.state.search} onChange={this.onChange}
+                        after={null}/>
 
                 <Group style={{paddingBottom: 8}} header={<Header mode="secondary">Недавние</Header>}>
                     <HorizontalScroll>
                         <div style={{display: 'flex'}}>
-                            {this.thematics.length > 0 &&
-                            this.thematics.map(thematic =>
+                            {moods.length > 0 &&
+                            moods.map(thematic =>
                                 <div style={{...itemStyle, paddingLeft: 4}}>
-                                <Avatar size={64} style={{marginBottom: 8}}>
-                                    <img src={MusicIcon} />
-                                </Avatar>
-                                Элджей {this.props.iosMove}
+                                    <Avatar size={64} style={{marginBottom: 8}}>
+                                        <img src={thematic.icon}/>
+                                    </Avatar>
+                                    {thematic.name}
                                 </div>
-                                )}
+                            )}
                         </div>
                     </HorizontalScroll>
                 </Group>
@@ -177,10 +195,14 @@ class Home extends React.Component {
         );
     }
 }
+
 //todo: paddingleft/right
 
-{/*<List>*/}
-{/*	{this.thematics.map(thematic => <Cell key={thematic.id}>{thematic.name}</Cell>)}*/}
-{/*</List>*/}
+{/*<List>*/
+}
+{/*	{this.thematics.map(thematic => <Cell key={thematic.id}>{thematic.name}</Cell>)}*/
+}
+{/*</List>*/
+}
 
 export default Home;
