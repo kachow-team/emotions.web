@@ -236,7 +236,7 @@ const posts = [
 ];
 
 const Post = ({post}) => (
-    <div>
+    <div style={{marginTop: 10, paddingTop: 10}}>
         <img src={postHeader} />
         <div style={{marginTop: 10, marginLeft: 12}}>{post}</div>
         <img src={commentpanel} />
