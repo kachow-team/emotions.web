@@ -33,9 +33,20 @@ import {
     isMobileSafari
 } from "react-device-detect";
 
+// const PictureOnMap = (props) => {
+//     return (
+//         <img key={props.picId} onClick={props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
+//              className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
+//     )
+// };
+
 const PictureOnMap = (props) => {
+    const onClick = e => {
+        props.setThematic(props.thematic);
+        props.go(e);
+    }
     return (
-        <img key={props.picId} onClick={props.go} data-to={'persik'} style={{width: '100px', height: '100px'}}
+        <img key={props.picId} onClick={onClick} data-to={'feed'} style={{width: '100px', height: '100px'}}
              className={props.picId} src={props.picId} alt={`emotion-${props.picId}`}/>
     )
 };
@@ -135,30 +146,40 @@ class Home extends React.Component {
                                     lat={59.955413}
                                     lng={30.337844}
                                     picId={persik}
+                                    thematic='Персик'
+                                    setThematic={this.props.setThematic}
                                 />
                                 <PictureOnMap
                                     go={this.props.go}
                                     lat={62.955413}
                                     lng={30.337844}
                                     picId={car}
+                                    thematic='Автомобили'
+                                    setThematic={this.props.setThematic}
                                 />
                                 <PictureOnMap
                                     go={this.props.go}
                                     lat={57.955413}
                                     lng={30.337844}
                                     picId={art}
+                                    thematic='Искусство'
+                                    setThematic={this.props.setThematic}
                                 />
                                 <PictureOnMap
                                     go={this.props.go}
                                     lat={55.955413}
                                     lng={20.337844}
                                     picId={it}
+                                    thematic='IT'
+                                    setThematic={this.props.setThematic}
                                 />
                                 <PictureOnMap
                                     go={this.props.go}
                                     lat={55.955413}
                                     lng={20.337844}
                                     picId={karantin}
+                                    thematic='Карантин'
+                                    setThematic={this.props.setThematic}
                                 />
                                 {/*{moods.map(thematic => (*/}
                                 {/*    <div go={this.props.go}*/}
@@ -201,7 +222,7 @@ class Home extends React.Component {
                             this.moods.map(thematic =>
                                 <div style={{...itemStyle, paddingLeft: 4}}>
                                     <Avatar size={64} style={{marginBottom: 8}}>
-                                        <img src={thematic.icon}/>
+                                        <img src={thematic.icon} onClick={(e) => {this.props.setThematic(thematic.name); this.props.go(e);}} data-to={'feed'} />
                                     </Avatar>
                                     {thematic.name}
                                 </div>
