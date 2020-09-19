@@ -111,6 +111,11 @@ class Home extends React.Component {
         return thematics.filter(({name}) => name.toLowerCase().indexOf(search) > -1);
     }
 
+    get moods() {
+        const search = this.state.search.toLowerCase();
+        return moods.filter(({name}) => name.toLowerCase().indexOf(search) > -1);
+    }
+
     render() {
         return (
             <Panel id={this.props.id}>
@@ -155,6 +160,19 @@ class Home extends React.Component {
                                     lng={20.337844}
                                     picId={karantin}
                                 />
+                                {/*{moods.map(thematic => (*/}
+                                {/*    <div go={this.props.go}*/}
+                                {/*         lat={55.955413}*/}
+                                {/*         lng={20.337844}*/}
+                                {/*         picId={karantin}*/}
+
+                                {/*         style={{...itemStyle, paddingLeft: 4}}>*/}
+                                {/*        <Avatar size={64} style={{marginBottom: 8}}>*/}
+                                {/*            <img src={thematic.icon}/>*/}
+                                {/*        </Avatar>*/}
+                                {/*        {thematic.name}*/}
+                                {/*    </div>*/}
+                                {/*))}*/}
                             </GoogleMapReact>
                             <Avatar
                                 className={`Smile Smile_top ${!!this.props.iosMove ? 'Smile_iphone' : 'Smile_iphone'}`}
@@ -179,8 +197,8 @@ class Home extends React.Component {
                 <Group style={{paddingBottom: 8}} header={<Header mode="secondary">Недавние</Header>}>
                     <HorizontalScroll>
                         <div style={{display: 'flex'}}>
-                            {moods.length > 0 &&
-                            moods.map(thematic =>
+                            {this.moods.length > 0 &&
+                            this.moods.map(thematic =>
                                 <div style={{...itemStyle, paddingLeft: 4}}>
                                     <Avatar size={64} style={{marginBottom: 8}}>
                                         <img src={thematic.icon}/>
